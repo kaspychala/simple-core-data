@@ -10,4 +10,5 @@ import Foundation
 class SubmitModel: ObservableObject {
     @Published var selectedDate: Date = .init()
     @Published var showAlert: Bool = false
+    @Published var isLoading: Bool = false
 }

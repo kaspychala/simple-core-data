@@ -20,7 +20,9 @@ class SubmitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         handleButton()
-        getLatestCheckInDate()
+        Task {
+            await getLatestCheckInDate()
+        }
     }
 
     private func handleButton() {
@@ -30,8 +32,8 @@ class SubmitViewController: UIViewController {
         }
     }
 
-    private func getLatestCheckInDate() {
-        viewModel?.getLatestCheckInDate()
+    private func getLatestCheckInDate() async {
+        await viewModel?.getLatestCheckInDate()
     }
 
     override func loadView() {
