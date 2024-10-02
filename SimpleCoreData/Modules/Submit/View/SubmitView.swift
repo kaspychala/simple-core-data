@@ -13,25 +13,29 @@ struct SubmitView: View {
 
     var body: some View {
         VStack {
-            DatePicker("Select Date and Time", selection: $model.selectedDate, displayedComponents: [.date, .hourAndMinute])
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .padding()
-
-            Text("Selected Date and Time:")
-            Text("\(model.selectedDate)")
-                .font(.headline)
-                .padding()
-
-            Button(action: {
-                handleSubmit()
-            }) {
-                Text("Submit")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, maxHeight: 44)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+            if model.isLoading {
+                ProgressView()
+            } else {
+                DatePicker("Select Date and Time", selection: $model.selectedDate, displayedComponents: [.date, .hourAndMinute])
+                    .datePickerStyle(GraphicalDatePickerStyle())
                     .padding()
+
+                Text("Selected Date and Time:")
+                Text("\(model.selectedDate)")
+                    .font(.headline)
+                    .padding()
+
+                Button(action: {
+                    handleSubmit()
+                }) {
+                    Text("Submit")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, maxHeight: 44)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding()
+                }
             }
         }
         .padding()

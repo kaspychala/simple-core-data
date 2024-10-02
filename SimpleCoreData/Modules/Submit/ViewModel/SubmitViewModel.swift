@@ -11,13 +11,14 @@ protocol SubmitViewModelProtocol {
     var coordinator: SubmitCoordinator? { get set }
     var submitModel: SubmitModel { get }
     func insertCheckInDate()
-    func getLatestCheckInDate()
+    func getLatestCheckInDate() async
 }
 
 class SubmitViewModel: SubmitViewModelProtocol {
     weak var coordinator: SubmitCoordinator?
 
     private var employeeRepository: EmployeeRepositoryProtocol
+    private var networkingService: NetworkingServiceProtocol
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -26,8 +27,12 @@ class SubmitViewModel: SubmitViewModelProtocol {
 
     var submitModel: SubmitModel = SubmitModel()
 
-    init(employeeRepository: EmployeeRepositoryProtocol) {
+    init(
+        employeeRepository: EmployeeRepositoryProtocol,
+        networkingService: NetworkingServiceProtocol
+    ) {
         self.employeeRepository = employeeRepository
+        self.networkingService = networkingService
     }
 
     func insertCheckInDate() {
@@ -40,12 +45,34 @@ class SubmitViewModel: SubmitViewModelProtocol {
 
     }
 
-    func getLatestCheckInDate() {
+    func getLatestCheckInDate() async {
+        if UserDefaultsManager.shared.isFirstLaunch() {
+            await getRemoteLatestCheckInDate()
+        } else {
+            getLocalLatestCheckInDate()
+        }
+    }
+
+    private func getLocalLatestCheckInDate() {
         guard let latestCheckInDateString = employeeRepository.fetchLatestCheckInDate(),
               let latestCheckInDate = dateFormatter.date(from: latestCheckInDateString) else {
             return
         }
         self.submitModel.selectedDate = latestCheckInDate
+    }
+
+    @MainActor
+    private func getRemoteLatestCheckInDate() async {
+        do {
+            submitModel.isLoading.toggle()
+            if let date = try await networkingService.fetchCheckInDateTime() {
+                self.submitModel.selectedDate = date
+            }
+            submitModel.isLoading.toggle()
+        } catch {
+            LoggingManager.shared.error("Failed to fetch mock API data: \(error)")
+            submitModel.isLoading.toggle()
+        }
     }
 
     private func validateDate(date: Date) -> Bool {

@@ -30,7 +30,9 @@ class EmployeeRepository: EmployeeRepositoryProtocol {
     }
 
     func insertCheckInDate(_ date: String) {
-        let entity = NSEntityDescription.entity(forEntityName: "Employee", in: context)!
+        guard let entity = NSEntityDescription.entity(forEntityName: "Employee", in: context) else {
+            return
+        }
         let newEmployee = NSManagedObject(entity: entity, insertInto: context)
         newEmployee.setValue(date, forKey: "check_in_date_time")
         // Additional attribute for tracking insertion order to get the most recent date added when fetching
@@ -38,9 +40,9 @@ class EmployeeRepository: EmployeeRepositoryProtocol {
 
         do {
             try context.save()
-            print("Successfully saved check-in date")
+            LoggingManager.shared.info("Successfully saved check-in date")
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            LoggingManager.shared.error("Could not save. \(error), \(error.userInfo)")
         }
     }
 
@@ -54,7 +56,7 @@ class EmployeeRepository: EmployeeRepositoryProtocol {
             let employees = try context.fetch(fetchRequest)
             return employees.first?.value(forKey: "check_in_date_time") as? String
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            LoggingManager.shared.error("Could not fetch. \(error), \(error.userInfo)")
             return nil
         }
     }
