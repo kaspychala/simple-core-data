@@ -9,8 +9,13 @@ import Foundation
 
 protocol StartViewModelProtocol {
     var coordinator: StartCoordinator? { get set }
+    func navigateToSubmit()
 }
 
 class StartViewModel: StartViewModelProtocol {
     weak var coordinator: StartCoordinator?
+
+    func navigateToSubmit() {
+        coordinator?.navigateToSubmit()
+    }
 }

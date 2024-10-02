@@ -21,6 +21,6 @@ class SubmitCoordinator: Coordinator {
         viewModel.coordinator = self
         let viewController = SubmitViewController()
         viewController.viewModel = viewModel
-        navigationController.pushViewController(viewController, animated: false)
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

@@ -9,8 +9,13 @@ import Foundation
 
 protocol SubmitViewModelProtocol {
     var coordinator: SubmitCoordinator? { get set }
+    func addNewDate(date: Date)
 }
 
 class SubmitViewModel: SubmitViewModelProtocol {
     weak var coordinator: SubmitCoordinator?
+
+    func addNewDate(date: Date) {
+        print("TODO: Add new date")
+    }
 }
