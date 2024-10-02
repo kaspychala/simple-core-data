@@ -12,12 +12,20 @@ class SubmitViewController: UIViewController {
     var viewModel: SubmitViewModelProtocol?
     private let contentView: UIHostingController = {
         let hostingController = UIHostingController(rootView: SubmitView())
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         return hostingController
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        handleButton()
+    }
+
+    private func handleButton() {
+        contentView.rootView.onButtonTap = { [weak self] date in
+            guard let self else { return }
+            self.viewModel?.addNewDate(date: date)
+        }
     }
 
     override func loadView() {

@@ -17,7 +17,14 @@ class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        handleButton()
+    }
+
+    private func handleButton() {
+        contentView.onButtonTap = { [weak self] in
+            guard let self = self else { return }
+            self.viewModel?.navigateToSubmit()
+        }
     }
 
     override func loadView() {
