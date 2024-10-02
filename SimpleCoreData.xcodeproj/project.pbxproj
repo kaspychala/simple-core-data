@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0E8185532CADDA0600228013 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8185522CADDA0600228013 /* SwiftyBeaver */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0ED10D962CAD5F93004685A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -60,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8185532CADDA0600228013 /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +124,7 @@
 			);
 			name = SimpleCoreData;
 			packageProductDependencies = (
+				0E8185522CADDA0600228013 /* SwiftyBeaver */,
 			);
 			productName = SimpleCoreData;
 			productReference = 0ED10D7C2CAD5F92004685A7 /* SimpleCoreData.app */;
@@ -199,6 +205,9 @@
 			);
 			mainGroup = 0ED10D732CAD5F92004685A7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0E8185512CADDA0600228013 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0ED10D7D2CAD5F92004685A7 /* Products */;
 			projectDirPath = "";
@@ -558,6 +567,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E8185512CADDA0600228013 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E8185522CADDA0600228013 /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E8185512CADDA0600228013 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0ED10D742CAD5F92004685A7 /* Project object */;
 }
