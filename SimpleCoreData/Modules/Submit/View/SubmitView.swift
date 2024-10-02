@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct SubmitView: View {
-    var onButtonTap: ((Date) -> Void)?
-    @State private var selectedDate = Date()
+    @StateObject var model: SubmitModel
+    var onButtonTap: (() -> Void)?
 
     var body: some View {
         VStack {
-            DatePicker("Select Date and Time", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
+            DatePicker("Select Date and Time", selection: $model.selectedDate, displayedComponents: [.date, .hourAndMinute])
                 .datePickerStyle(GraphicalDatePickerStyle())
                 .padding()
 
             Text("Selected Date and Time:")
-            Text("\(selectedDate, formatter: dateFormatter)")
+            Text("\(model.selectedDate)")
                 .font(.headline)
                 .padding()
 
@@ -35,21 +35,16 @@ struct SubmitView: View {
             }
         }
         .padding()
+        .alert(isPresented: $model.showAlert) {
+            Alert(title: Text("Invalid Date"), message: Text("The selected date and time cannot be in the future."), dismissButton: .default(Text("OK")))
+        }
     }
 
     private func handleSubmit() {
-        print("Selected Date and Time: \(selectedDate)")
-        onButtonTap?(selectedDate)
-    }
-
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter
+        onButtonTap?()
     }
 }
 
 #Preview {
-    SubmitView()
+    SubmitView(model: SubmitModel())
 }

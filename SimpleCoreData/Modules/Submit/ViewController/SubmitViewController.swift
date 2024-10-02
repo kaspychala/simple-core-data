@@ -10,8 +10,9 @@ import SwiftUI
 
 class SubmitViewController: UIViewController {
     var viewModel: SubmitViewModelProtocol?
-    private let contentView: UIHostingController = {
-        let hostingController = UIHostingController(rootView: SubmitView())
+    lazy var contentView: UIHostingController<SubmitView>? = {
+        guard let viewModel = viewModel else { return nil }
+        let hostingController = UIHostingController(rootView: SubmitView(model: viewModel.submitModel))
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         return hostingController
     }()
@@ -19,19 +20,28 @@ class SubmitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         handleButton()
+        getLatestCheckInDate()
     }
 
     private func handleButton() {
-        contentView.rootView.onButtonTap = { [weak self] date in
+        contentView?.rootView.onButtonTap = { [weak self] in
             guard let self else { return }
-            self.viewModel?.addNewDate(date: date)
+            self.viewModel?.insertCheckInDate()
         }
+    }
+
+    private func getLatestCheckInDate() {
+        viewModel?.getLatestCheckInDate()
     }
 
     override func loadView() {
         super.loadView()
         self.view = UIView()
         self.view.backgroundColor = .white
+        guard let contentView = contentView else {
+            LoggingManager.shared.error("UIHostingController not set")
+            return
+        }
         self.addChild(contentView)
         self.view.addSubview(contentView.view)
         NSLayoutConstraint.activate([
