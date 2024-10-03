@@ -11,6 +11,7 @@ protocol SubmitViewModelProtocol {
     var coordinator: SubmitCoordinator? { get set }
     var submitModel: SubmitModel { get }
     func insertCheckInDate()
+    func didFinishCheckingIn()
     func getLatestCheckInDate() async
 }
 
@@ -49,6 +50,10 @@ class SubmitViewModel: SubmitViewModelProtocol {
             submitModel.showAlert.toggle()
         }
 
+    }
+
+    func didFinishCheckingIn() {
+        coordinator?.didFinishCheckingIn()
     }
 
     @MainActor

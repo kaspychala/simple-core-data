@@ -25,6 +25,11 @@ class SubmitViewController: UIViewController {
         }
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel?.didFinishCheckingIn()
+    }
+
     private func handleButton() {
         contentView?.rootView.onButtonTap = { [weak self] in
             guard let self else { return }

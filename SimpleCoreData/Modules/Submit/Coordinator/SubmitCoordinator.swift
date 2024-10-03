@@ -29,4 +29,8 @@ class SubmitCoordinator: Coordinator {
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
     }
+
+    func didFinishCheckingIn() {
+        parentCoordinator?.childDidFinish(self)
+    }
 }
