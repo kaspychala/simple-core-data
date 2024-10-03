@@ -10,6 +10,14 @@ import UIKit
 class StartView: UIView {
     var onButtonTap: (() -> Void)?
 
+    let companyNameLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     let startButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Start", for: .normal)
@@ -21,8 +29,12 @@ class StartView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
+        addSubview(companyNameLabel)
         addSubview(startButton)
         NSLayoutConstraint.activate([
+            companyNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            companyNameLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -20),
+
             startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             startButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
@@ -33,9 +45,12 @@ class StartView: UIView {
         fatalError("Storyboards are not compatible with truth and beauty.")
     }
 
-    // Handle button tap and call the closure
     @objc private func startButtonTapped() {
         onButtonTap?()
+    }
+
+    func updateCompanyName(name: String) {
+        companyNameLabel.text = "Welcome to \(name)"
     }
 }
 

@@ -18,9 +18,11 @@ class SubmitCoordinator: Coordinator {
 
     func start() {
         let employeeRepository: EmployeeRepositoryProtocol = EmployeeRepository()
+        let companyRepository: CompanyRepositoryProtocol = CompanyRepository()
         let networkingService: NetworkingServiceProtocol = NetworkingService()
-        var viewModel = SubmitViewModel(
+        let viewModel = SubmitViewModel(
             employeeRepository: employeeRepository,
+            companyRepository: companyRepository,
             networkingService: networkingService)
         viewModel.coordinator = self
         let viewController = SubmitViewController()

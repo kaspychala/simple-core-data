@@ -26,7 +26,8 @@ class StartCoordinator: Coordinator {
     }
 
     func start() {
-        var viewModel: StartViewModelProtocol = StartViewModel()
+        let companyRepository: CompanyRepositoryProtocol = CompanyRepository()
+        var viewModel: StartViewModelProtocol = StartViewModel(companyRepository: companyRepository)
         viewModel.coordinator = self
         let viewController = StartViewController()
         viewController.viewModel = viewModel

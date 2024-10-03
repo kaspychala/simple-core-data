@@ -18,6 +18,15 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         handleButton()
+        updateCompanyName()
+    }
+
+    private func updateCompanyName() {
+        guard let companyName = viewModel?.getCompanyName() else {
+            LoggingManager.shared.error("Company name not accessible")
+            return
+        }
+        contentView.updateCompanyName(name: companyName)
     }
 
     private func handleButton() {
