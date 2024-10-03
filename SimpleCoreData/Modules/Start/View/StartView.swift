@@ -7,10 +7,10 @@
 
 import UIKit
 
-class StartView: UIView {
-    var onButtonTap: (() -> Void)?
+@objc class StartView: UIView {
+    @objc var onButtonTap: (() -> Void)?
 
-    let companyNameLabel: UILabel = {
+    @objc let companyNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
@@ -18,7 +18,7 @@ class StartView: UIView {
         return label
     }()
 
-    let startButton: UIButton = {
+    @objc let startButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Start", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
@@ -26,7 +26,7 @@ class StartView: UIView {
         return button
     }()
 
-    override init(frame: CGRect) {
+    @objc override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         addSubview(companyNameLabel)
@@ -41,7 +41,7 @@ class StartView: UIView {
         startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     }
 
-    required init?(coder: NSCoder) {
+    @objc required init?(coder: NSCoder) {
         fatalError("Storyboards are not compatible with truth and beauty.")
     }
 
@@ -49,7 +49,7 @@ class StartView: UIView {
         onButtonTap?()
     }
 
-    func updateCompanyName(name: String) {
+    @objc func updateCompanyName(name: String) {
         companyNameLabel.text = "Welcome to \(name)"
     }
 }

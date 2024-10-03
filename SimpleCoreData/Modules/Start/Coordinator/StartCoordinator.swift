@@ -7,16 +7,16 @@
 
 import UIKit
 
-class StartCoordinator: Coordinator {
+@objc class StartCoordinator: NSObject, Coordinator {
     weak var parentCoordinator: AppCoordinator?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
 
-    init(navigationController: UINavigationController) {
+    @objc init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
-    func childDidFinish(_ child: Coordinator?) {
+    @objc func childDidFinish(_ child: Coordinator?) {
         for (index, coordinator) in childCoordinators.enumerated() {
             if coordinator === child {
                 childCoordinators.remove(at: index)
@@ -25,16 +25,16 @@ class StartCoordinator: Coordinator {
         }
     }
 
-    func start() {
+    @objc func start() {
         let companyRepository: CompanyRepositoryProtocol = CompanyRepository()
-        var viewModel: StartViewModelProtocol = StartViewModel(companyRepository: companyRepository)
+        let viewModel: StartViewModelProtocol = StartViewModel(companyRepository: companyRepository)
         viewModel.coordinator = self
         let viewController = StartViewController()
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: false)
     }
 
-    func navigateToSubmit() {
+    @objc func navigateToSubmit() {
         let child = SubmitCoordinator(navigationController: navigationController)
         child.parentCoordinator = self
         childCoordinators.append(child)

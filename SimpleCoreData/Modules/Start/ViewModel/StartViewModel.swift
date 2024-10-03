@@ -7,27 +7,27 @@
 
 import Foundation
 
-protocol StartViewModelProtocol {
-    var coordinator: StartCoordinator? { get set }
-    func navigateToSubmit()
-    func getCompanyName() -> String?
+@objc protocol StartViewModelProtocol {
+    @objc var coordinator: StartCoordinator? { get set }
+    @objc func navigateToSubmit()
+    @objc func getCompanyName() -> String?
 }
 
-class StartViewModel: StartViewModelProtocol {
+class StartViewModel: NSObject, StartViewModelProtocol {
     weak var coordinator: StartCoordinator?
 
     private var companyRepository: CompanyRepositoryProtocol
 
-    init(companyRepository: CompanyRepositoryProtocol) {
+    @objc init(companyRepository: CompanyRepositoryProtocol) {
         self.companyRepository = companyRepository
     }
 
-    func getCompanyName() -> String? {
+    @objc func getCompanyName() -> String? {
         let company = companyRepository.fetchDefaultCompany()
         return company?.name
     }
 
-    func navigateToSubmit() {
+    @objc func navigateToSubmit() {
         coordinator?.navigateToSubmit()
     }
 }

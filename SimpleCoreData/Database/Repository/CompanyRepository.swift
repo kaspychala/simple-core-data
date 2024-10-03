@@ -7,20 +7,20 @@
 
 import CoreData
 
-protocol CompanyRepositoryProtocol {
-    func insertCompany(name: String)
-    func fetchCompany(forName name: String) -> Company?
-    func fetchDefaultCompany() -> Company?
+@objc protocol CompanyRepositoryProtocol {
+    @objc func insertCompany(name: String)
+    @objc func fetchCompany(forName name: String) -> Company?
+    @objc func fetchDefaultCompany() -> Company?
 }
 
-class CompanyRepository: CompanyRepositoryProtocol {
+class CompanyRepository: NSObject, CompanyRepositoryProtocol {
     private let context: NSManagedObjectContext
 
-    init(context: NSManagedObjectContext = CoreDataHelper.shared.context) {
+    @objc init(context: NSManagedObjectContext = CoreDataHelper.shared.context) {
         self.context = context
     }
 
-    func insertCompany(name: String) {
+    @objc func insertCompany(name: String) {
         let company = Company(context: context)
         company.name = name
 
@@ -32,7 +32,7 @@ class CompanyRepository: CompanyRepositoryProtocol {
         }
     }
 
-    func fetchDefaultCompany() -> Company? {
+    @objc func fetchDefaultCompany() -> Company? {
         let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name == %@", "Migration Company")
 
@@ -50,7 +50,7 @@ class CompanyRepository: CompanyRepositoryProtocol {
         }
     }
 
-    func fetchCompany(forName name: String) -> Company? {
+    @objc func fetchCompany(forName name: String) -> Company? {
         let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name == %@", name)
 
