@@ -18,6 +18,7 @@ class SubmitViewModel: SubmitViewModelProtocol {
     weak var coordinator: SubmitCoordinator?
 
     private var employeeRepository: EmployeeRepositoryProtocol
+    private var companyRepository: CompanyRepositoryProtocol
     private var networkingService: NetworkingServiceProtocol
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -29,22 +30,28 @@ class SubmitViewModel: SubmitViewModelProtocol {
 
     init(
         employeeRepository: EmployeeRepositoryProtocol,
+        companyRepository: CompanyRepositoryProtocol,
         networkingService: NetworkingServiceProtocol
     ) {
         self.employeeRepository = employeeRepository
+        self.companyRepository = companyRepository
         self.networkingService = networkingService
     }
 
     func insertCheckInDate() {
         if validateDate(date: submitModel.selectedDate) {
             let dateString = dateFormatter.string(from: submitModel.selectedDate)
-            employeeRepository.insertCheckInDate(dateString)
+            guard let company = companyRepository.fetchDefaultCompany() else {
+                return
+            }
+            employeeRepository.insertCheckInDate(dateString, forCompany: company)
         } else {
             submitModel.showAlert.toggle()
         }
 
     }
 
+    @MainActor
     func getLatestCheckInDate() async {
         if UserDefaultsManager.shared.isFirstLaunch() {
             await getRemoteLatestCheckInDate()

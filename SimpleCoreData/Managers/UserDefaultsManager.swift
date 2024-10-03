@@ -18,6 +18,8 @@ class UserDefaultsManager: UserDefaultsManagerProtocol {
     private let defaults = UserDefaults.standard
     private let hasLaunchedKey = "hasLaunchedBefore"
 
+    private init() {}
+
     func isFirstLaunch() -> Bool {
         if defaults.bool(forKey: hasLaunchedKey) {
             return false
