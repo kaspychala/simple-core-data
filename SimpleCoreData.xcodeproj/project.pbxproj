@@ -8,17 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0E8185532CADDA0600228013 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8185522CADDA0600228013 /* SwiftyBeaver */; };
+		0E8B9DF92CAEF2D900F2F7A6 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8B9DF82CAEF2D900F2F7A6 /* Nimble */; };
+		0E8B9DFB2CAEF2DD00F2F7A6 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8B9DFA2CAEF2DD00F2F7A6 /* Quick */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		0ED10D962CAD5F93004685A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ED10D742CAD5F92004685A7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0ED10D7B2CAD5F92004685A7;
-			remoteInfo = SimpleCoreData;
-		};
-		0ED10DA02CAD5F93004685A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0ED10D742CAD5F92004685A7 /* Project object */;
 			proxyType = 1;
@@ -30,7 +25,6 @@
 /* Begin PBXFileReference section */
 		0ED10D7C2CAD5F92004685A7 /* SimpleCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED10D952CAD5F93004685A7 /* SimpleCoreDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleCoreDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0ED10D9F2CAD5F93004685A7 /* SimpleCoreDataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleCoreDataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -72,24 +66,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0ED10D9C2CAD5F93004685A7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				0E8B9DFB2CAEF2DD00F2F7A6 /* Quick in Frameworks */,
+				0E8B9DF92CAEF2D900F2F7A6 /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E8B9DF12CAEF25D00F2F7A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0ED10D732CAD5F92004685A7 = {
 			isa = PBXGroup;
 			children = (
 				0ED10D7E2CAD5F92004685A7 /* SimpleCoreData */,
 				0ED10D982CAD5F93004685A7 /* SimpleCoreDataTests */,
+				0E8B9DF12CAEF25D00F2F7A6 /* Frameworks */,
 				0ED10D7D2CAD5F92004685A7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,7 +96,6 @@
 			children = (
 				0ED10D7C2CAD5F92004685A7 /* SimpleCoreData.app */,
 				0ED10D952CAD5F93004685A7 /* SimpleCoreDataTests.xctest */,
-				0ED10D9F2CAD5F93004685A7 /* SimpleCoreDataUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,30 +144,12 @@
 			);
 			name = SimpleCoreDataTests;
 			packageProductDependencies = (
+				0E8B9DF82CAEF2D900F2F7A6 /* Nimble */,
+				0E8B9DFA2CAEF2DD00F2F7A6 /* Quick */,
 			);
 			productName = SimpleCoreDataTests;
 			productReference = 0ED10D952CAD5F93004685A7 /* SimpleCoreDataTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		0ED10D9E2CAD5F93004685A7 /* SimpleCoreDataUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0ED10DB02CAD5F93004685A7 /* Build configuration list for PBXNativeTarget "SimpleCoreDataUITests" */;
-			buildPhases = (
-				0ED10D9B2CAD5F93004685A7 /* Sources */,
-				0ED10D9C2CAD5F93004685A7 /* Frameworks */,
-				0ED10D9D2CAD5F93004685A7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0ED10DA12CAD5F93004685A7 /* PBXTargetDependency */,
-			);
-			name = SimpleCoreDataUITests;
-			packageProductDependencies = (
-			);
-			productName = SimpleCoreDataUITests;
-			productReference = 0ED10D9F2CAD5F93004685A7 /* SimpleCoreDataUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -190,10 +168,6 @@
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = 0ED10D7B2CAD5F92004685A7;
 					};
-					0ED10D9E2CAD5F93004685A7 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 0ED10D7B2CAD5F92004685A7;
-					};
 				};
 			};
 			buildConfigurationList = 0ED10D772CAD5F92004685A7 /* Build configuration list for PBXProject "SimpleCoreData" */;
@@ -207,6 +181,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				0E8185512CADDA0600228013 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				0E8B9DD92CAEEB4300F2F7A6 /* XCRemoteSwiftPackageReference "Nimble" */,
+				0E8B9DDC2CAEEB8A00F2F7A6 /* XCRemoteSwiftPackageReference "Quick" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0ED10D7D2CAD5F92004685A7 /* Products */;
@@ -215,7 +191,6 @@
 			targets = (
 				0ED10D7B2CAD5F92004685A7 /* SimpleCoreData */,
 				0ED10D942CAD5F93004685A7 /* SimpleCoreDataTests */,
-				0ED10D9E2CAD5F93004685A7 /* SimpleCoreDataUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -229,13 +204,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0ED10D932CAD5F93004685A7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0ED10D9D2CAD5F93004685A7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,13 +227,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0ED10D9B2CAD5F93004685A7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -273,11 +234,6 @@
 			isa = PBXTargetDependency;
 			target = 0ED10D7B2CAD5F92004685A7 /* SimpleCoreData */;
 			targetProxy = 0ED10D962CAD5F93004685A7 /* PBXContainerItemProxy */;
-		};
-		0ED10DA12CAD5F93004685A7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0ED10D7B2CAD5F92004685A7 /* SimpleCoreData */;
-			targetProxy = 0ED10DA02CAD5F93004685A7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -493,40 +449,6 @@
 			};
 			name = Release;
 		};
-		0ED10DB12CAD5F93004685A7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F6N6BU583P;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pl.kaspychala.SimpleCoreDataUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SimpleCoreData;
-			};
-			name = Debug;
-		};
-		0ED10DB22CAD5F93004685A7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F6N6BU583P;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pl.kaspychala.SimpleCoreDataUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SimpleCoreData;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -557,15 +479,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0ED10DB02CAD5F93004685A7 /* Build configuration list for PBXNativeTarget "SimpleCoreDataUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0ED10DB12CAD5F93004685A7 /* Debug */,
-				0ED10DB22CAD5F93004685A7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -577,6 +490,22 @@
 				minimumVersion = 2.1.1;
 			};
 		};
+		0E8B9DD92CAEEB4300F2F7A6 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
+		0E8B9DDC2CAEEB8A00F2F7A6 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -584,6 +513,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E8185512CADDA0600228013 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
 			productName = SwiftyBeaver;
+		};
+		0E8B9DF82CAEF2D900F2F7A6 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E8B9DD92CAEEB4300F2F7A6 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		0E8B9DFA2CAEF2DD00F2F7A6 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E8B9DDC2CAEEB8A00F2F7A6 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
